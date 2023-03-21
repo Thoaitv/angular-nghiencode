@@ -1,0 +1,50 @@
+<p>home works!</p>
+<h2>{{name}}</h2>
+<!-- <h2 *ngIf="age >= 14">Già</h2>
+<h2 *ngIf="age < 15">Trẻ</h2> -->
+<br>
+<input type="text" title="this is {{name}}" [(ngModel)]="age">
+
+<div *ngIf="age<15;then tre else gia"></div>
+
+<ng-template #tre>Trẻ</ng-template>
+<ng-template #gia>Già</ng-template>
+
+<button (click)="resetName()">Reset</button>
+
+<hr>
+<h1>For loop</h1>
+<h3>Danh sách trái cây</h3>
+<div *ngFor="let item of traiCay; let i= index">
+  <li>{{i}}.{{item}}</li>
+</div>
+
+<hr>
+<h1>Kết hợp</h1>
+<table class="table">
+  <tr>
+    <th>Thứ tự</th>
+    <th>Tên</th>
+    <th>Giá</th>
+    <th>Sale</th>
+  </tr>
+  <tr *ngFor="let item of traiCay2; let i = index">
+    <td>{{i+1}}</td>
+    <td>{{item.ten | uppercase}}</td>
+    <td [ngClass]="{'red':item.gia < 10}">{{item.gia | currency:'USD':'symbol':"1.2"}}</td>
+    <td>{{item.sale | onSale | uppercase}}</td>
+    <!-- <td>{{item.sale? 'Đang hạ giá':"Binh thuong"}}</td> -->
+  </tr>
+</table>
+
+<hr>
+<h1>Cascade dropdown</h1>
+
+<select name="city" id="city" (change)="changeCity($event)">
+  <option *ngFor="let city of cities" value="{{city.city}}">{{city.city}}</option>
+</select>
+
+
+<select name="district" id="district">
+  <option *ngFor="let district of districts" value="{{district}}">{{district}}</option>
+</select>
